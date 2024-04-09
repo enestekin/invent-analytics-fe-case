@@ -30,7 +30,7 @@ export default function MovieListItem({ movie }: MovieListItemProps) {
           <strong>Release Year:</strong> {movie.Year}
         </p>
         <p>
-          <>Id:</> {movie.imdbID}
+          <strong>Id:</strong> {movie.imdbID}
         </p>
       </div>
     </GridColumn>
