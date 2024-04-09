@@ -1,15 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
-import App from './App';
+import MovieDetail from './pages/MovieDetail';
+import Movies from './pages/Movies';
 import reportWebVitals from './reportWebVitals';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from './store';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    children: [
+      {
+        path: '/movies',
+        element: <Movies />,
+      },
+      {
+        path: '/movies/:id',
+        element: <MovieDetail />,
+      },
+    ],
+  },
+]);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
 
