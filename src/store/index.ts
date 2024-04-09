@@ -6,3 +6,5 @@ export const store = configureStore({
     movies: moviesSlice.reducer,
   },
 });
+
+export type IRootState = ReturnType<typeof store.getState>;

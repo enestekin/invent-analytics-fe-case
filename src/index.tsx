@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
+import 'semantic-ui-css/semantic.min.css';
 import MovieDetail from './pages/MovieDetail';
-import Movies from './pages/Movies';
+import MoviesList from './pages/MoviesList';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/movies',
-        element: <Movies />,
+        element: <MoviesList />,
       },
       {
         path: '/movies/:id',

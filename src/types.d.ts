@@ -13,3 +13,15 @@ export type MoviesStateType = {
     type: string;
   };
 };
+
+export type MovieType = {
+  Title: string;
+  Director: string;
+  Actors: string;
+  Genre: string;
+  imdbRating: string;
+  Year: string;
+  Runtime: string;
+  Plot: string;
+  Poster: string;
+};
