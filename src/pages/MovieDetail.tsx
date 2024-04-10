@@ -1,4 +1,5 @@
 import './MovieDetail.scss';
+import Loader from '../components/Loader';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { MovieType } from '../types';
@@ -50,7 +51,11 @@ export default function MovieDetail() {
           </div>
         </div>
       )}
-      {!movie && <p>Loading...</p>}
+      {!movie && (
+        <div className='movie-detail__loader'>
+          <Loader />
+        </div>
+      )}
     </>
   );
 }
