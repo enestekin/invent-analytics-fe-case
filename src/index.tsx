@@ -9,21 +9,24 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './store';
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    children: [
-      {
-        path: '/movies',
-        element: <MoviesList />,
-      },
-      {
-        path: '/movies/:id',
-        element: <MovieDetail />,
-      },
-    ],
-  },
-]);
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      children: [
+        {
+          path: '/movies',
+          element: <MoviesList />,
+        },
+        {
+          path: '/movies/:id',
+          element: <MovieDetail />,
+        },
+      ],
+    },
+  ],
+  { basename: '/movies' }
+);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
