@@ -1,5 +1,5 @@
 import { Loader } from 'semantic-ui-react';
 
-export default function LoaderIcon() {
+export default function LoaderComponent() {
   return <Loader active inline='centered' />;
 }

@@ -7,6 +7,7 @@ export type MoviesStateType = {
     Poster: string;
   }[];
   activePage: number;
+  totalPages: number;
   filters: {
     searchString: string;
     year: number | null;

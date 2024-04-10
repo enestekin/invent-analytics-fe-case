@@ -4,6 +4,7 @@ import { MoviesStateType } from '../types';
 const moviesInitialState: MoviesStateType = {
   movies: [],
   activePage: 1,
+  totalPages: 0,
   filters: {
     searchString: 'pokemon',
     year: null,
@@ -16,7 +17,8 @@ export const moviesSlice = createSlice({
   initialState: moviesInitialState,
   reducers: {
     setMovies: (state, action) => {
-      state.movies = action.payload;
+      state.movies = action.payload.Search;
+      state.totalPages = Math.ceil(action.payload.totalResults / 10);
     },
     setType: (state, action) => {
       state.filters.type = action.payload;
@@ -27,8 +29,11 @@ export const moviesSlice = createSlice({
     setSearchString: (state, action) => {
       state.filters.searchString = action.payload;
     },
+    setActivePage: (state, action) => {
+      state.activePage = action.payload;
+    },
   },
 });
 
-export const { setMovies, setType, setYear, setSearchString } =
+export const { setMovies, setType, setYear, setSearchString, setActivePage } =
   moviesSlice.actions;

@@ -8,6 +8,7 @@ import { Grid } from 'semantic-ui-react';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setMovies } from '../store/moviesSlice';
+import PaginationComponent from '../components/Pagination';
 
 const URL = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_KEY}`;
 
@@ -17,7 +18,9 @@ export default function MoviesList() {
 
   const dispatch = useDispatch();
 
-  const { movies } = useSelector((state: IRootState) => state.movies);
+  const { movies, totalPages, activePage } = useSelector(
+    (state: IRootState) => state.movies
+  );
   const {
     filters: { searchString, type, year },
   } = useSelector((state: IRootState) => state.movies);
@@ -26,11 +29,11 @@ export default function MoviesList() {
     const getMoviesData = async () => {
       setIsLoading(true);
       const response = await fetch(
-        `${URL}&s=${searchString}&type=${type}&y=${year}`
+        `${URL}&s=${searchString}&type=${type}&y=${year}&page=${activePage}`
       );
       const data = await response.json();
       if (data.Search) {
-        dispatch(setMovies(data.Search));
+        dispatch(setMovies(data));
         setError('');
       } else {
         dispatch(setMovies([]));
@@ -39,26 +42,33 @@ export default function MoviesList() {
       setIsLoading(false);
     };
     getMoviesData();
-  }, [searchString, dispatch, type, year]);
+  }, [searchString, dispatch, type, year, activePage]);
 
   return (
     <>
       <FilterBar />
-      {movies?.length > 0 && (
-        <div className='movies-list'>
-          <Grid textAlign='center'>
-            {movies.map((movie) => {
-              return <MovieListItem key={movie.imdbID} movie={movie} />;
-            })}
-          </Grid>
-        </div>
-      )}
-      {isLoading && (
+      {isLoading ? (
         <div>
           <Loader />
         </div>
+      ) : (
+        movies?.length > 0 && (
+          <div className='movies-list'>
+            <Grid textAlign='center'>
+              {movies.map((movie) => {
+                return <MovieListItem key={movie.imdbID} movie={movie} />;
+              })}
+            </Grid>
+          </div>
+        )
       )}
+
       {!isLoading && error && <p className='movies-list__error'>{error}</p>}
+      {totalPages > 0 && (
+        <div className='movies-list__pagination'>
+          {<PaginationComponent totalPages={totalPages} />}
+        </div>
+      )}
     </>
   );
 }
