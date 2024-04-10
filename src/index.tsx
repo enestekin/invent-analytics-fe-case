@@ -12,16 +12,11 @@ import { store } from './store';
 const router = createBrowserRouter([
   {
     path: '/',
-    children: [
-      {
-        path: '/movies',
-        element: <MoviesList />,
-      },
-      {
-        path: '/movies/:id',
-        element: <MovieDetail />,
-      },
-    ],
+    element: <MoviesList />,
+  },
+  {
+    path: '/movies/:id',
+    element: <MovieDetail />,
   },
 ]);
 
