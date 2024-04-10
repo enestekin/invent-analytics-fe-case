@@ -9,7 +9,7 @@ export type MoviesStateType = {
   activePage: number;
   filters: {
     searchString: string;
-    year: string;
+    year: number | null;
     type: string;
   };
 };

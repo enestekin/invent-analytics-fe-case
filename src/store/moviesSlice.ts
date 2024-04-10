@@ -6,7 +6,7 @@ const moviesInitialState: MoviesStateType = {
   activePage: 1,
   filters: {
     searchString: 'pokemon',
-    year: '',
+    year: null,
     type: '',
   },
 };
@@ -18,7 +18,17 @@ export const moviesSlice = createSlice({
     setMovies: (state, action) => {
       state.movies = action.payload;
     },
+    setType: (state, action) => {
+      state.filters.type = action.payload;
+    },
+    setYear: (state, action) => {
+      state.filters.year = action.payload;
+    },
+    setSearchString: (state, action) => {
+      state.filters.searchString = action.payload;
+    },
   },
 });
 
-export const { setMovies } = moviesSlice.actions;
+export const { setMovies, setType, setYear, setSearchString } =
+  moviesSlice.actions;

@@ -21,7 +21,10 @@ export default function MovieListItem({ movie }: MovieListItemProps) {
       as='a'
       href={`/movies/${movie.imdbID}`}
     >
-      <img className='movieslist-item__img' src={movie.Poster} alt='img' />
+      <div
+        className='movieslist-item__img'
+        style={{ backgroundImage: `url(${movie.Poster})` }}
+      ></div>
       <div>
         <p>
           <strong>Name:</strong> {movie.Title}
