@@ -22,12 +22,15 @@ export const moviesSlice = createSlice({
     },
     setType: (state, action) => {
       state.filters.type = action.payload;
+      state.activePage = 1;
     },
     setYear: (state, action) => {
       state.filters.year = action.payload;
+      state.activePage = 1;
     },
     setSearchString: (state, action) => {
       state.filters.searchString = action.payload;
+      state.activePage = 1;
     },
     setActivePage: (state, action) => {
       state.activePage = action.payload;
